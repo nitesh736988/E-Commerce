@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import './ProductDisplay.css'
 import star_icon from "../Assets/star_icon.png";
 import star_dull_icon from "../Assets/star_dull_icon.png";
@@ -9,6 +9,8 @@ const ProductDisplay = (props) => {
   
     const {product} = props;
     const {addToCart} = useContext(ShopContext);
+
+    const [selectedSize, setSelectedSize] =useState(null);
   return (
     <div className='productdisplay'>
       <div className='productdisplay-left'>
@@ -44,11 +46,11 @@ const ProductDisplay = (props) => {
         <div className='productdisplay-right-size'>
             <h1>Select Size</h1>
             <div className='productdisplay-right-sizes'>
-                <div>S</div>
-                <div>M</div>
-                <div>L</div>
-                <div>XL</div>
-                <div>XX1</div>
+            <div className={`Product Size ${selectedSize === 'S' ? 'selected' : ''}`} onClick={() => setSelectedSize('S')}>S</div>
+          <div className={`Product Size ${selectedSize === 'M' ? 'selected' : ''}`} onClick={() => setSelectedSize('M')}>M</div>
+          <div className={`Product Size ${selectedSize === 'L' ? 'selected' : ''}`} onClick={() => setSelectedSize('L')}>L</div>
+          <div className={`Product Size ${selectedSize === 'XL' ? 'selected' : ''}`} onClick={() => setSelectedSize('XL')}>XL</div>
+          <div className={`Product Size ${selectedSize === 'XX1' ? 'selected' : ''}`} onClick={() => setSelectedSize('XX1')}>XXl</div>
             </div>
         </div>
         <button onClick={()=>{addToCart(product.id)}}>ADD TO CART</button>
